@@ -22,7 +22,7 @@ export function ViewQuiz() {
         setQuizLoaded(true);
         setQuiz(result);
       },
-      onError(e) {
+      onError() {
         alert("Could not view quiz!");
         setQuizLoaded(false);
       },
