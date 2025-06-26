@@ -1,13 +1,13 @@
 # QuizKnit
 
-QuizKnit is a web application that generates quizzes based on a body of text provided by the user. It can be used as an educational tool to quickly create comprehension quizzes or as a fun way to test knowledge from any content you input. You can view a working demo at https://quizknit.com/
+Frontend for QuizKnit, a web application that generates quizzes based on user provided text. It can be used as an educational tool to quickly create comprehension quizzes or as a fun way to test knowledge from any content you input. You can view a working demo at https://quizknit.com/
+
+Backend Repo: https://github.com/jibolash/quizknit-api
 
 ## Technologies Used
 
-- **Frontend**: HTML, CSS, TypeScript, React, Vite
-- **Backend**: Node.js, Express
-- **Quiz Generation API**: OpenAI
-  
+HTML, CSS, TypeScript, React, Vite, AntD
+
 ## Getting Started
 
 ### Prerequisites
@@ -20,12 +20,13 @@ QuizKnit is a web application that generates quizzes based on a body of text pro
 2. **Install dependencies**
    ```bash
    npm install
-3. Run the app
-    ```bash
-    npm run dev
+   ```
+3. Create a .env file using the .sample.env file in the repo as a template, modify as desired
+4. Start the app
+   ```bash
+   npm run dev
+   ```
 
 ### Usage
 
-1. Visit http://localhost:5173/
-2. Enter the body of text you want to generate a quiz from.
-3. Click "Generate Quiz" and see your questions
+Visit the app at http://localhost:5173/ (Or the VITE_CLIENT_URL you set in the env file if you didn't use the default)
