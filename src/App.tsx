@@ -223,7 +223,6 @@ function App() {
                         cursor: "pointer",
                       }}
                     >
-                      {/* {quizKnitUser.name.split(" ")[0]} */}
                       <UserOutlined />
                     </Space>
                   </Dropdown>

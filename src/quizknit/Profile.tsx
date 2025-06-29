@@ -1,4 +1,4 @@
-import { Button, Flex, Input } from "antd";
+import { Flex, Input } from "antd";
 import { Typography } from "antd";
 import { QuizKnitUser } from "../App";
 import { authClient } from "../lib/auth-client";
@@ -8,16 +8,6 @@ const { Text } = Typography;
 export function Profile() {
   const { data: session } = authClient.useSession();
   const quizKnitUser = session?.user as QuizKnitUser;
-
-  const deleteUser = async () => {
-    if (
-      confirm(
-        "Are you sure you want to delete your account? All you saved quizzes will be permanently deleted!"
-      )
-    ) {
-      await authClient.deleteUser({ callbackURL: "/" });
-    }
-  };
 
   return (
     <Flex
@@ -56,9 +46,6 @@ export function Profile() {
           <Text strong>Email</Text>
           <Input value={quizKnitUser.email} disabled />
         </Flex>
-        {/* <Flex vertical onClick={deleteUser}>
-          <Button danger>Delete Account</Button>
-        </Flex> */}
       </Flex>
     </Flex>
   );
