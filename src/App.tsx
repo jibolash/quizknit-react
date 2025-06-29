@@ -19,8 +19,10 @@ import { UserQuizzes } from "./quizknit/UserQuizzes";
 import { User } from "better-auth";
 import Landing from "./Landing";
 import { isMobile } from "react-device-detect";
+import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import { Profile } from "./quizknit/Profile";
 
-interface QuizKnitUser extends User {
+export interface QuizKnitUser extends User {
   hasPremium: boolean;
   priceId: string;
   customerId: string;
@@ -75,10 +77,41 @@ function App() {
 
   const items: MenuProps["items"] = [
     {
+      key: "1",
+      label: (
+        <div style={{ cursor: "default" }}>
+          <div>
+            <strong>{quizKnitUser && quizKnitUser?.name}</strong>
+          </div>
+          <div>{quizKnitUser && quizKnitUser?.email}</div>
+        </div>
+      ),
+    },
+    {
+      type: "divider",
+    },
+    {
       key: "2",
       label: (
+        <span
+          onClick={() => navigate("/profile")}
+          style={{ cursor: "pointer" }}
+        >
+          <Flex gap={6}>
+            <UserOutlined />
+            Profile
+          </Flex>
+        </span>
+      ),
+    },
+    {
+      key: "3",
+      label: (
         <span onClick={signOut} style={{ cursor: "pointer" }}>
-          Sign Out
+          <Flex gap={6}>
+            <LogoutOutlined />
+            Sign Out
+          </Flex>
         </span>
       ),
     },
@@ -190,7 +223,8 @@ function App() {
                         cursor: "pointer",
                       }}
                     >
-                      {quizKnitUser.name.split(" ")[0]}
+                      {/* {quizKnitUser.name.split(" ")[0]} */}
+                      <UserOutlined />
                     </Space>
                   </Dropdown>
                 )}
@@ -214,6 +248,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
               <Route path="/login" element={<SignIn />} />
               <Route path="/" element={<Landing />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </Flex>
         </Flex>

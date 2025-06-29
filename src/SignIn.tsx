@@ -46,7 +46,7 @@ export function SignIn() {
       <Flex justify="center">
         <Typography.Title level={3}>Sign In</Typography.Title>
       </Flex>
-      <Flex style={{ margin: "12px" }}>
+      <Flex>
         <Button
           type="default"
           htmlType="submit"
@@ -54,6 +54,7 @@ export function SignIn() {
           icon={loading ? <LoadingOutlined /> : <GoogleOutlined />}
           onClick={googleSignIn}
           disabled={loading}
+          style={{ width: "350px" }}
         >
           Sign in with Google
         </Button>
