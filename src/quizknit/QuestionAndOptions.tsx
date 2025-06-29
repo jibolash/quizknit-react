@@ -1,11 +1,14 @@
-import { Flex, Radio, Space } from "antd";
+import { Flex, Radio, Space, Typography } from "antd";
 import { Question } from "./CreateQuiz";
 import { useEffect, useState } from "react";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 interface QuestionsProps {
   questionItem: Question;
   index: number;
 }
+
+const { Text } = Typography;
 
 export function QuestionAndOptions({ questionItem, index }: QuestionsProps) {
   const [answer, setAnswer] = useState(null);
@@ -54,10 +57,24 @@ export function QuestionAndOptions({ questionItem, index }: QuestionsProps) {
           </Space>
         </Radio.Group>
         {correctAnswerSelected == false && (
-          <Flex style={{ color: "red" }}>Wrong answer, try again</Flex>
+          <Flex style={{ color: "red" }} gap={6}>
+            <Text strong style={{ color: "red" }}>
+              <CloseCircleOutlined />
+            </Text>
+            <Text strong style={{ color: "red" }}>
+              Wrong Answer, try again
+            </Text>
+          </Flex>
         )}
         {correctAnswerSelected && (
-          <Flex style={{ color: "green" }}>Correct!</Flex>
+          <Flex style={{ color: "green" }} gap={6}>
+            <Text strong style={{ color: "green" }}>
+              <CheckCircleOutlined />
+            </Text>
+            <Text strong style={{ color: "green" }}>
+              Correct!
+            </Text>
+          </Flex>
         )}
       </Flex>
     </Flex>
