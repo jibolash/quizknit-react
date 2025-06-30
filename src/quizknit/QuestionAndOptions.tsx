@@ -2,6 +2,7 @@ import { Flex, Radio, Space, Typography } from "antd";
 import { Question } from "./CreateQuiz";
 import { useEffect, useState } from "react";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import { Option } from "./Option";
 
 interface QuestionsProps {
   questionItem: Question;
@@ -30,10 +31,11 @@ export function QuestionAndOptions({ questionItem, index }: QuestionsProps) {
       gap="5px"
       key={index}
       style={{
-        padding: "8px",
+        padding: "12px",
         borderRadius: "8px",
-        backgroundColor: "#FAFAFA",
+        // backgroundColor: "#FAFAFA",
         margin: "0px 0px 10px 0px",
+        border: "1px solid #f0f0f0",
       }}
     >
       <Flex>
@@ -50,14 +52,12 @@ export function QuestionAndOptions({ questionItem, index }: QuestionsProps) {
         >
           <Space direction="vertical">
             {questionItem.options.map((option, index) => (
-              <Radio value={index} key={index}>
-                {option.text}
-              </Radio>
+              <Option index={index} text={option.text} />
             ))}
           </Space>
         </Radio.Group>
         {correctAnswerSelected == false && (
-          <Flex style={{ color: "red" }} gap={6}>
+          <Flex style={{ color: "red", justifyContent: " center" }} gap={6}>
             <Text strong style={{ color: "red" }}>
               <CloseCircleOutlined />
             </Text>
@@ -67,7 +67,7 @@ export function QuestionAndOptions({ questionItem, index }: QuestionsProps) {
           </Flex>
         )}
         {correctAnswerSelected && (
-          <Flex style={{ color: "green" }} gap={6}>
+          <Flex style={{ color: "green", justifyContent: " center" }} gap={6}>
             <Text strong style={{ color: "green" }}>
               <CheckCircleOutlined />
             </Text>
