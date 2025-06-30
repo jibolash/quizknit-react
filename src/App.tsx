@@ -21,6 +21,7 @@ import Landing from "./Landing";
 import { isMobile } from "react-device-detect";
 import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { Profile } from "./quizknit/Profile";
+import { Test } from "./quizknit/Test";
 
 export interface QuizKnitUser extends User {
   hasPremium: boolean;
@@ -33,35 +34,40 @@ function App() {
   const quizKnitUser = session?.user as QuizKnitUser;
   const navigate = useNavigate();
 
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
-  const ref3 = useRef(null);
-  const ref4 = useRef(null);
+  const enterTextTab = useRef(null);
+  const selectCategoryTab = useRef(null);
+  const generateQuizButton = useRef(null);
+  const viewQuiz = useRef(null);
+  const exploreNavlink = useRef(null);
   const [openTour, setOpenTour] = useState<boolean>(false);
 
   const steps: TourProps["steps"] = [
     {
       title: "Enter text",
       description: "Enter text you want to generate a quiz from.",
-      target: () => ref1.current,
+      target: () => enterTextTab.current,
+    },
+    {
+      title: "Select topic",
+      description: "Select historical topic you want to generate a quiz from.",
+      target: () => selectCategoryTab.current,
     },
     {
       title: "Generate Quiz",
-      description:
-        "Click here to generate a quiz based on the text you provided.",
-      target: () => ref2.current,
+      description: "Click here to generate a quiz.",
+      target: () => generateQuizButton.current,
     },
     {
       title: "View Quiz",
       description:
         "Your AI generated quiz questions will appear here. You will be able to save the quiz afterwards.",
-      target: () => ref3.current,
+      target: () => viewQuiz.current,
     },
     {
       title: "Explore",
       description:
         "Test your knowledge by exploring quizzes created by other users.",
-      target: () => ref4.current,
+      target: () => exploreNavlink.current,
     },
   ];
 
@@ -178,7 +184,6 @@ function App() {
                     isActive ? "activeNavLink" : "inactiveNavLink"
                   }
                   style={{ textDecoration: "none" }}
-                  ref={ref4}
                 >
                   Create
                 </NavLink>
@@ -188,7 +193,7 @@ function App() {
                     isActive ? "activeNavLink" : "inactiveNavLink"
                   }
                   style={{ textDecoration: "none" }}
-                  ref={ref4}
+                  ref={exploreNavlink}
                 >
                   Explore
                 </NavLink>
@@ -236,7 +241,13 @@ function App() {
                 path="/create"
                 element={
                   <CreateQuiz
-                    tourSteps={{ ref1, ref2, ref3 }}
+                    tourSteps={{
+                      enterTextTab,
+                      selectCategoryTab,
+                      generateQuizButton,
+                      viewQuiz,
+                      exploreNavlink,
+                    }}
                     setOpenTour={setOpenTour}
                   />
                 }
@@ -248,6 +259,7 @@ function App() {
               <Route path="/login" element={<SignIn />} />
               <Route path="/" element={<Landing />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/test" element={<Test />} />
             </Routes>
           </Flex>
         </Flex>

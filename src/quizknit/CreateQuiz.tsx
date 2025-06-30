@@ -1,4 +1,14 @@
-import { Button, Card, Col, Flex, Row, Select, Spin, Typography } from "antd";
+import {
+  Button,
+  Card,
+  Col,
+  Flex,
+  Row,
+  Select,
+  Spin,
+  Tabs,
+  Typography,
+} from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";
 import { QuizKnitApi } from "./QuizKnitApi";
@@ -10,6 +20,7 @@ import { SavedQuizModal } from "./SavedQuizModal";
 import { Link } from "react-router-dom";
 import { authClient } from "../lib/auth-client";
 import { isMobile } from "react-device-detect";
+import { CategoriesList } from "./CategoriesList";
 
 export type QuizTextInput = {
   textInput: string;
@@ -37,9 +48,11 @@ export interface Quiz {
 
 interface CreateQuizProps {
   tourSteps: {
-    ref1: React.MutableRefObject<null>;
-    ref2: React.MutableRefObject<null>;
-    ref3: React.MutableRefObject<null>;
+    enterTextTab: React.MutableRefObject<null>;
+    selectCategoryTab: React.MutableRefObject<null>;
+    generateQuizButton: React.MutableRefObject<null>;
+    viewQuiz: React.MutableRefObject<null>;
+    exploreNavlink: React.MutableRefObject<null>;
   };
   setOpenTour: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -122,7 +135,8 @@ export function CreateQuiz(props: CreateQuizProps) {
           <Col xs={24} md={12}>
             <Flex
               style={{
-                padding: "20px",
+                paddingLeft: "20px",
+                paddingRight: "20px",
                 backgroundColor: "white",
                 overflow: "hidden",
                 border: "1px solid #f0f0f0",
@@ -130,27 +144,60 @@ export function CreateQuiz(props: CreateQuizProps) {
               }}
               vertical
               gap="12px"
-              ref={props.tourSteps.ref3}
             >
-              <Typography.Text>
-                Paste the text content you want to generate a quiz from and
-                click{" "}
-                <strong style={{ color: "#18181B" }}>Generate Quiz</strong>{" "}
-                below.
-              </Typography.Text>
-              <Flex
-                ref={props.tourSteps && props.tourSteps.ref1}
-                style={{ width: "100%" }}
-              >
-                <TextArea
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                  placeholder="Type or paste text you want to generate a quiz from here"
-                  autoSize={{ maxRows: 20, minRows: 20 }}
-                  disabled={loading}
-                  id="inputTextArea"
-                />
-              </Flex>
+              <Tabs
+                defaultActiveKey="2"
+                size="large"
+                items={[
+                  {
+                    key: "1",
+                    label: (
+                      <span
+                        ref={props.tourSteps && props.tourSteps.enterTextTab}
+                      >
+                        Paste Text
+                      </span>
+                    ),
+                    children: (
+                      <Flex style={{ width: "100%" }} vertical gap={8}>
+                        <Typography.Text strong>
+                          Paste the text content you want to generate a quiz
+                          from
+                        </Typography.Text>
+                        <TextArea
+                          value={value}
+                          onChange={(e) => setValue(e.target.value)}
+                          placeholder="Type or paste text you want to generate a quiz from here"
+                          autoSize={{ maxRows: 20, minRows: 20 }}
+                          disabled={loading}
+                          id="inputTextArea"
+                        />
+                      </Flex>
+                    ),
+                  },
+                  {
+                    key: "2",
+                    label: (
+                      <span
+                        ref={
+                          props.tourSteps && props.tourSteps.selectCategoryTab
+                        }
+                      >
+                        History Topics
+                      </span>
+                    ),
+                    children: (
+                      <Flex vertical gap={8}>
+                        <Typography.Text strong>
+                          Select Historical Topic
+                        </Typography.Text>
+                        <CategoriesList setValue={setValue} />
+                      </Flex>
+                    ),
+                  },
+                ]}
+                // onChange={() => setValue("")}
+              ></Tabs>
               <Flex justify="center" gap={12}>
                 <Flex vertical gap={8}>
                   <strong>Number of questions</strong>
@@ -179,7 +226,7 @@ export function CreateQuiz(props: CreateQuizProps) {
                   />
                 </Flex>
               </Flex>
-              <Flex justify="center" ref={props.tourSteps.ref2}>
+              <Flex justify="center" ref={props.tourSteps.generateQuizButton}>
                 <Button
                   type="primary"
                   onClick={onGenerateQuiz}
@@ -189,6 +236,7 @@ export function CreateQuiz(props: CreateQuizProps) {
                   size="large"
                   style={{
                     color: value.length === 0 ? "gray" : "white",
+                    marginBottom: "12px",
                   }}
                 >
                   Generate Quiz
@@ -198,7 +246,7 @@ export function CreateQuiz(props: CreateQuizProps) {
           </Col>
           <Col xs={24} md={12}>
             <>
-              <Flex ref={props.tourSteps.ref3} vertical gap="12px">
+              <Flex ref={props.tourSteps.viewQuiz} vertical gap="12px">
                 {quiz == undefined && (
                   <Card title={"Your AI generated quiz will appear here."}>
                     <Flex>
