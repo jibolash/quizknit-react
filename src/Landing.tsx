@@ -13,7 +13,7 @@ const features = [
     icon: <RobotOutlined style={{ fontSize: "2rem" }} />,
     title: "AI-Powered Generation",
     description:
-      "QuizKnit analyzes your content and generates relevant questions automatically.",
+      "Paste your own text or pick an historical topic you are and generate relevant questions in seconds.",
   },
   {
     icon: <ThunderboltOutlined style={{ fontSize: "2rem" }} />,
@@ -32,9 +32,9 @@ const features = [
 const steps = [
   {
     number: 1,
-    title: "Paste Your Content",
+    title: "Select category of interest or Paste Your Content",
     description:
-      "Paste in any text from any article, lesson, or document. No formatting needed.",
+      "Select from a Curated List Paste or paste in any text from any article, lesson, or document. No formatting needed.",
   },
   {
     number: 2,
@@ -62,11 +62,15 @@ export default function Landing() {
       >
         <Col xs={24} sm={20} md={16} lg={12} style={{ textAlign: "center" }}>
           <Tag color="magenta">Powered by AI</Tag>
-          <Title>Turn Any Text Into A Quiz in Seconds</Title>
+          <Title>
+            Create Quizzes from Curated Categories or Any Text in Seconds
+          </Title>
           <Paragraph style={{ fontSize: "1.2rem", color: "rgba(0,0,0,0.65)" }}>
-            Transform your study materials, articles, and documents into
-            engaging quizzes. Take the quiz right away, save it for later, or
-            share it with students or friends.
+            Choose from broad historical topics like Ancient Civilizations,
+            Medieval Period, World Wars, and more or paste your own study
+            materials, articles, and documents. Instantly generate engaging
+            quizzes you can take now, save for later, or share with students and
+            friends.
           </Paragraph>
           <Space size="middle" wrap>
             <Button
