@@ -161,8 +161,8 @@ export function CreateQuiz(props: CreateQuizProps) {
                     children: (
                       <Flex style={{ width: "100%" }} vertical gap={8}>
                         <Typography.Text strong>
-                          Paste the text content you want to generate a quiz
-                          from
+                          Paste text you want to generate a quiz from and click
+                          Generate Quiz below
                         </Typography.Text>
                         <TextArea
                           value={value}
@@ -189,7 +189,8 @@ export function CreateQuiz(props: CreateQuizProps) {
                     children: (
                       <Flex vertical gap={8}>
                         <Typography.Text strong>
-                          Select Historical Topic
+                          Select an historical topic and click Generate Quiz
+                          below
                         </Typography.Text>
                         <CategoriesList setValue={setValue} />
                       </Flex>
