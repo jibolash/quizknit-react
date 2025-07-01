@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 import { authClient } from "../lib/auth-client";
 import { isMobile } from "react-device-detect";
 import { CategoriesList } from "./CategoriesList";
+import { categories, historicalFigures } from "./historyItems";
 
 export type QuizTextInput = {
   textInput: string;
@@ -192,7 +193,26 @@ export function CreateQuiz(props: CreateQuizProps) {
                           Select an historical topic and click Generate Quiz
                           below
                         </Typography.Text>
-                        <CategoriesList setValue={setValue} />
+                        <CategoriesList
+                          setValue={setValue}
+                          categories={categories}
+                        />
+                      </Flex>
+                    ),
+                  },
+                  {
+                    key: "3",
+                    label: <span>Historical Figures</span>,
+                    children: (
+                      <Flex vertical gap={8}>
+                        <Typography.Text strong>
+                          Select an historical figure and click Generate Quiz
+                          below
+                        </Typography.Text>
+                        <CategoriesList
+                          setValue={setValue}
+                          categories={historicalFigures}
+                        />
                       </Flex>
                     ),
                   },

@@ -1,14 +1,18 @@
 import { DownOutlined, RightOutlined } from "@ant-design/icons";
 import { Collapse, List, Typography } from "antd";
-import { categories, Category } from "./historyItems";
+import { Category } from "./historyItems";
 import { CategoriesListItem } from "./CategoriesListItem";
 import { useState } from "react";
 
 interface CategoriesListProps {
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  categories: Category[];
 }
 
-export const CategoriesList = ({ setValue }: CategoriesListProps) => {
+export const CategoriesList = ({
+  setValue,
+  categories,
+}: CategoriesListProps) => {
   const [selected, setSelected] = useState(-1);
 
   function createItem(c: Category, index: number) {
