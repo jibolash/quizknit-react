@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { QuizKnitApi } from "./QuizKnitApi";
 import { useEffect, useState } from "react";
 import { useAsync } from "react-async-hook";
-import { Quiz } from "./CreateQuiz";
+import { Quiz } from "./create/CreateQuiz";
 import { QuizCardList } from "./QuizCardList";
 
 export function UserQuizzes() {
@@ -44,7 +44,7 @@ export function UserQuizzes() {
       }}
     >
       <Flex justify="center">
-        <h3>Your Library</h3>
+        <h3>Your Quizzes</h3>
       </Flex>
       <QuizCardList quizArr={userQuizzes} />
     </Flex>

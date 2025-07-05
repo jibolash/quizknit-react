@@ -6,21 +6,21 @@ import {
   FileOutlined,
 } from "@ant-design/icons";
 import { Flex, Card, Dropdown, Button, MenuProps } from "antd";
-import { Quiz } from "./create/CreateQuiz";
+import { FlashcardSet } from "./create/CreateQuiz";
 import { ShareItemModal } from "./ShareItemModal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-interface QuizCardProps {
-  quiz: Quiz;
+interface FlashcardSetCardProps {
+  flashcardSet: FlashcardSet;
 }
-export function QuizCard({ quiz }: QuizCardProps) {
-  const [quizToShare, setQuizToShare] = useState("");
+export function FlashcardSetCard({ flashcardSet }: FlashcardSetCardProps) {
+  const [flashcardSetToShare, setFlashcardSetToShare] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const showModal = (id: string) => {
-    setQuizToShare(id);
+    setFlashcardSetToShare(id);
     setIsModalOpen(true);
   };
 
@@ -28,7 +28,10 @@ export function QuizCard({ quiz }: QuizCardProps) {
     {
       key: 1,
       label: (
-        <span onClick={() => showModal(quiz._id)} style={{ cursor: "pointer" }}>
+        <span
+          onClick={() => showModal(flashcardSet._id)}
+          style={{ cursor: "pointer" }}
+        >
           <Flex gap={4}>
             <ShareAltOutlined />
             Share
@@ -43,40 +46,41 @@ export function QuizCard({ quiz }: QuizCardProps) {
       <Card>
         <Flex vertical gap={8}>
           <Flex align="baseline" gap={8} justify="space-between">
-            <strong>{quiz.quizTitle}</strong>
+            <strong>{flashcardSet.flashcardSetTitle}</strong>
             <Dropdown menu={{ items }} placement="top">
               <MoreOutlined />
             </Dropdown>
           </Flex>
           <Flex>
-            {quiz.dateCreated && (
+            {flashcardSet.dateCreated && (
               <p style={{ color: "gray", margin: "0", fontSize: "12px" }}>
-                <CalendarOutlined /> {new Date(quiz.dateCreated).toDateString()}
+                <CalendarOutlined />{" "}
+                {new Date(flashcardSet.dateCreated).toDateString()}
               </p>
             )}
           </Flex>
           <Flex>
             <p style={{ color: "gray", margin: "0", fontSize: "12px" }}>
-              <FileOutlined /> {`${quiz.questions.length} questions`}
+              <FileOutlined /> {`${flashcardSet.flashcards.length} cards`}
             </p>
           </Flex>
           <Flex>
             <Button
               style={{ width: "100%" }}
               size="middle"
-              onClick={() => navigate(`/quiz/${quiz._id}`)}
+              onClick={() => navigate(`/flashcards/${flashcardSet._id}`)}
             >
               <PlayCircleOutlined />
-              Take Quiz
+              Study Cards
             </Button>
           </Flex>
         </Flex>
       </Card>
       <ShareItemModal
-        itemId={quizToShare}
+        itemId={flashcardSetToShare}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        savedItemType="quiz"
+        savedItemType={"flashcards"}
       />
     </>
   );

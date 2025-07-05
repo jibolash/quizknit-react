@@ -33,9 +33,6 @@ export const sampleInput = [
   },
 ];
 
-export const sampleQuiz =
-  "1. From Earth, the Milky Way appears as: \na) A hazy band of light\nb) A spiral galaxy\nc) A bright star\nd) A circle in the sky\n\n2. The term Milky Way is a translation of the Latin:\na) Via lactea\nb) Galaxías kýklos\nc) Hazy band\nd) Solar System\n\n3. Who was the first to resolve the band of light into individual stars with his telescope?\na) Galileo Galilei\nb) Edwin Hubble\nc) Harlow Shapley\nd) Heber Doust Curtis\n\n4. Until the early 1920s, most astronomers believed that the Milky Way:\na) Contained all the stars in the Universe\nb) Was just one of many galaxies\nc) Only contained our Solar System\nd) Was a bright star\n\n5. The Great Debate in 1920 was between:\na) Harlow Shapley and Heber Doust Curtis\nb) Galileo Galilei and Edwin Hubble\nc) Via lactea and galaxías kýklos\nd) Spiral galaxies and hazy bands";
-
 export const questionsArr = [
   {
     question: "From Earth, the Milky Way appears as:",
@@ -102,3 +99,38 @@ export const questionsArr = [
     ],
   },
 ];
+
+export const sampleFlashCards: {
+  flashCardSetTitle: string;
+  flashCards: {
+    question: string;
+    answer: string;
+  }[];
+} = {
+  flashCardSetTitle: "World War II",
+  flashCards: [
+    {
+      question: "When did World War II begin and end?",
+      answer: "It began on September 1, 1939, and ended on September 2, 1945.",
+    },
+    {
+      question: "What event prompted the United States to enter World War II?",
+      answer: "The Japanese attack on Pearl Harbor on December 7, 1941.",
+    },
+    {
+      question: "What was Operation Barbarossa?",
+      answer:
+        "Nazi Germany’s invasion of the Soviet Union, launched on June 22, 1941.",
+    },
+    {
+      question: "What was the significance of D‑Day?",
+      answer:
+        "The Allied invasion of Normandy on June 6, 1944, which opened a Western front against Germany.",
+    },
+    {
+      question:
+        "What were the two Japanese cities on which the U.S. dropped atomic bombs?",
+      answer: "Hiroshima (August 6, 1945) and Nagasaki (August 9, 1945).",
+    },
+  ],
+};

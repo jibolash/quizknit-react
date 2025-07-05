@@ -1,4 +1,4 @@
-import { Quiz, QuizTextInput } from "./CreateQuiz";
+import { FlashcardSet, Quiz, QuizTextInput } from "./create/CreateQuiz";
 
 function createRequest(path: string, init: RequestInit): Request {
   const origin = `${import.meta.env.VITE_SERVER_URL}/`;
@@ -82,5 +82,65 @@ export const QuizKnitApi = {
     if (response.status !== 200) {
       throw new Error("Could not get quiz");
     }
+  },
+
+  async createFlashCards(input: QuizTextInput): Promise<any> {
+    const request = createRequest("flashcards", {
+      method: "POST",
+      body: JSON.stringify(input),
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    const response = await fetch(request);
+    if (response.status !== 201) {
+      throw new Error("Could not create flashcards");
+    }
+    const createdFlashcards = await response.json();
+    return JSON.parse(createdFlashcards);
+  },
+
+  async saveFlashcards(flashcardSet: FlashcardSet): Promise<any> {
+    const request = createRequest("flashcards/save", {
+      method: "POST",
+      body: JSON.stringify({
+        flashcardSetTitle: flashcardSet.flashcardSetTitle,
+        flashcards: flashcardSet.flashcards,
+        userId: flashcardSet.userId,
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    const response = await fetch(request);
+    if (response.status !== 201) {
+      throw new Error("Could not save flashcards");
+    }
+    const savedFlashcardSet = await response.json();
+    return savedFlashcardSet.id;
+  },
+
+  async getFlashcardSetWithId(flashcardSetId: string): Promise<any> {
+    const request = createRequest(`flashcards/${flashcardSetId}`, {
+      method: "GET",
+    });
+    const response = await fetch(request);
+    if (response.status !== 200) {
+      throw new Error("Could not get flashcards");
+    }
+    const flashcardSetResponse = await response.json();
+    return flashcardSetResponse;
+  },
+
+  async getUserFlashcardSets(userId: string): Promise<any> {
+    const request = createRequest(`flashcards/user/${userId}/all`, {
+      method: "GET",
+    });
+    const response = await fetch(request);
+    if (response.status !== 200) {
+      throw new Error("Could not get user's flashcards");
+    }
+    const userFlashcardSetsResponse = await response.json();
+    return userFlashcardSetsResponse;
   },
 };

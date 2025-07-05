@@ -1,5 +1,5 @@
 import { Col, Row } from "antd";
-import { Quiz } from "./CreateQuiz";
+import { Quiz } from "./create/CreateQuiz";
 import { QuizCard } from "./QuizCard";
 
 interface QuizCardListProps {

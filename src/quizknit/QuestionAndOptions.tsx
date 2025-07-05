@@ -1,5 +1,5 @@
 import { Flex, Radio, Space, Typography } from "antd";
-import { Question } from "./CreateQuiz";
+import { Question } from "./create/CreateQuiz";
 import { useEffect, useState } from "react";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { Option } from "./Option";
@@ -33,7 +33,6 @@ export function QuestionAndOptions({ questionItem, index }: QuestionsProps) {
       style={{
         padding: "12px",
         borderRadius: "8px",
-        // backgroundColor: "#FAFAFA",
         margin: "0px 0px 10px 0px",
         border: "1px solid #f0f0f0",
       }}

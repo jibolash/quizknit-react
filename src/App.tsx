@@ -8,7 +8,7 @@ import {
   TourProps,
 } from "antd";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
-import { CreateQuiz } from "./quizknit/CreateQuiz";
+import { CreateQuiz } from "./quizknit/create/CreateQuiz";
 import { ViewQuiz } from "./quizknit/ViewQuiz";
 import { Explore } from "./quizknit/Explore";
 import { useRef, useState } from "react";
@@ -19,9 +19,17 @@ import { UserQuizzes } from "./quizknit/UserQuizzes";
 import { User } from "better-auth";
 import Landing from "./Landing";
 import { isMobile } from "react-device-detect";
-import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  LogoutOutlined,
+  QuestionCircleOutlined,
+  ThunderboltOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { Profile } from "./quizknit/Profile";
 import { Test } from "./quizknit/Test";
+import { Create } from "./quizknit/create/Create";
+import { ViewFlashcardSet } from "./quizknit/ViewFlashcardSet";
+import { UserFlashcardSets } from "./quizknit/UserFlashcardSets";
 
 export interface QuizKnitUser extends User {
   hasPremium: boolean;
@@ -81,7 +89,7 @@ function App() {
     });
   };
 
-  const items: MenuProps["items"] = [
+  const userProfileItems: MenuProps["items"] = [
     {
       key: "1",
       label: (
@@ -117,6 +125,37 @@ function App() {
           <Flex gap={6}>
             <LogoutOutlined />
             Sign Out
+          </Flex>
+        </span>
+      ),
+    },
+  ];
+
+  const libraryItems: MenuProps["items"] = [
+    {
+      key: "1",
+      label: (
+        <span
+          onClick={() => navigate(`${quizKnitUser.id}/quizzes`)}
+          style={{ cursor: "pointer" }}
+        >
+          <Flex gap={6}>
+            <QuestionCircleOutlined />
+            Quizzes
+          </Flex>
+        </span>
+      ),
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "2",
+      label: (
+        <span onClick={() => navigate(`${quizKnitUser.id}/flashcards`)}>
+          <Flex gap={6}>
+            <ThunderboltOutlined />
+            Flashcards
           </Flex>
         </span>
       ),
@@ -208,7 +247,7 @@ function App() {
                     Login
                   </NavLink>
                 )}
-                {quizKnitUser && (
+                {/* {quizKnitUser && (
                   <NavLink
                     to={`${quizKnitUser.id}/quizzes`}
                     className={({ isActive }) =>
@@ -218,9 +257,25 @@ function App() {
                   >
                     Library
                   </NavLink>
+                )} */}
+                {quizKnitUser && (
+                  <Dropdown
+                    menu={{ items: libraryItems }}
+                    placement="bottomLeft"
+                  >
+                    <Space
+                      style={{
+                        color: "black",
+                        padding: "20px 10px 20px 10px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Library
+                    </Space>
+                  </Dropdown>
                 )}
                 {quizKnitUser && (
-                  <Dropdown menu={{ items }}>
+                  <Dropdown menu={{ items: userProfileItems }}>
                     <Space
                       style={{
                         color: "black",
@@ -238,7 +293,7 @@ function App() {
           <Flex id="main" justify="center">
             <Routes>
               <Route
-                path="/create"
+                path="/create-quiz"
                 element={
                   <CreateQuiz
                     tourSteps={{
@@ -252,8 +307,29 @@ function App() {
                   />
                 }
               />
+              <Route
+                path="/create-flashcards"
+                element={
+                  <CreateQuiz
+                    tourSteps={{
+                      enterTextTab,
+                      selectCategoryTab,
+                      generateQuizButton,
+                      viewQuiz,
+                      exploreNavlink,
+                    }}
+                    setOpenTour={setOpenTour}
+                  />
+                }
+              />
+              <Route path="/create" element={<Create />} />
               <Route path="/:userId/quizzes" element={<UserQuizzes />} />
+              <Route
+                path="/:userId/flashcards"
+                element={<UserFlashcardSets />}
+              />
               <Route path="/quiz/:id" element={<ViewQuiz />} />
+              <Route path="/flashcards/:id" element={<ViewFlashcardSet />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="*" element={<NotFound />} />
               <Route path="/login" element={<SignIn />} />

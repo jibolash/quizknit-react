@@ -11,21 +11,21 @@ const { Title, Paragraph } = Typography;
 const features = [
   {
     icon: <RobotOutlined style={{ fontSize: "2rem" }} />,
-    title: "AI-Powered Generation",
+    title: "AI Powered Generation",
     description:
-      "Paste your own text or pick an historical topic you are and generate relevant questions in seconds.",
+      "Paste your own text or pick an historical topic you are and generate questions or flashcards in seconds.",
   },
   {
     icon: <ThunderboltOutlined style={{ fontSize: "2rem" }} />,
     title: "Instant Results",
     description:
-      "Get your personalized quiz in seconds. No waiting, no manual work - just instant learning.",
+      "Get your personalized quiz or flashcards in seconds. No waiting, no manual work - just instant learning.",
   },
   {
     icon: <SaveOutlined style={{ fontSize: "2rem" }} />,
-    title: "Save & Share Quizzes",
+    title: "Save & Share",
     description:
-      "Keep your quizzes for later or share them with students, peers, or friends with a shareable link",
+      "Keep for later or share with with students, peers, or friends with a shareable link",
   },
 ];
 
@@ -38,15 +38,14 @@ const steps = [
   },
   {
     number: 2,
-    title: "AI Generates Your Quiz",
+    title: "AI Does the Work",
     description:
-      "QuizKnit instantly creates smart, multiple-choice questions based on your input.",
+      "QuizKnit instantly creates smart, multiple-choice questions or flashcards based on your input.",
   },
   {
     number: 3,
-    title: " Take, Save or Share",
-    description:
-      "Take the quiz right away, save it for later, or share it with students or friends.",
+    title: "Save or Share",
+    description: "Save it for later, or share it with students or friends.",
   },
 ];
 
@@ -62,15 +61,11 @@ export default function Landing() {
       >
         <Col xs={24} sm={20} md={16} lg={12} style={{ textAlign: "center" }}>
           <Tag color="magenta">Powered by AI</Tag>
-          <Title>
-            Create Quizzes from Curated Categories or Any Text in Seconds
-          </Title>
+          <Title>Create Quizzes and Flashcards in Seconds</Title>
           <Paragraph style={{ fontSize: "1.2rem", color: "rgba(0,0,0,0.65)" }}>
-            Choose from broad historical topics like Ancient Civilizations,
-            Medieval Period, World Wars, and more or paste your own study
-            materials, articles, and documents. Instantly generate engaging
-            quizzes you can take now, save for later, or share with students and
-            friends.
+            Choose from broad historical topics or paste your own study
+            materials, articles, and documents. Instantly create, save and share
+            quizzes and flashcards
           </Paragraph>
           <Space size="middle" wrap>
             <Button
@@ -78,7 +73,7 @@ export default function Landing() {
               size="large"
               onClick={() => navigate("/create")}
             >
-              Get Started
+              Get Started!
             </Button>
           </Space>
           <Flex justify="center" style={{ marginTop: "20px" }}>
@@ -111,14 +106,13 @@ export default function Landing() {
               marginBottom: "2rem",
             }}
           >
-            Everything you need to create, take and share quizzes powered by
-            artificial intelligence.
+            Create, study, and share quizzes and flashcards, powered by AI.
           </Paragraph>
 
           <Row gutter={[24, 24]}>
             {features.map((f) => (
               <Col key={f.title} xs={24} sm={12} md={8}>
-                <Card hoverable bordered={false}>
+                <Card hoverable variant="borderless">
                   <Space direction="vertical" size="small">
                     {f.icon}
                     <Title level={4}>{f.title}</Title>
@@ -193,7 +187,7 @@ export default function Landing() {
             size="large"
             onClick={() => navigate("/create")}
           >
-            Start Creating Quizzes
+            Start Now!
           </Button>
           <Flex justify="center" style={{ margin: "20px" }}>
             <Typography.Text>

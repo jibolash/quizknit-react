@@ -3,42 +3,42 @@ import { useAsync } from "react-async-hook";
 import { useParams } from "react-router-dom";
 import { QuizKnitApi } from "./QuizKnitApi";
 import { useEffect, useState } from "react";
-import { QuestionAndOptions } from "./QuestionAndOptions";
-import { Quiz } from "./create/CreateQuiz";
+import { FlashcardSet } from "./create/CreateQuiz";
 import { LoadingOutlined, ShareAltOutlined } from "@ant-design/icons";
 import { ShareItemModal } from "./ShareItemModal";
+import { Flashcard } from "./create/Flashcard";
 
-export function ViewQuiz() {
+export function ViewFlashcardSet() {
   const { id } = useParams();
-  const [quiz, setQuiz] = useState<Quiz>();
-  const [quizLoaded, setQuizLoaded] = useState(false);
+  const [flashcardSet, setFlashcardSet] = useState<FlashcardSet>();
+  const [flashcardSetLoaded, setFlashcardSetLoaded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { loading: loadingQuiz, execute: loadQuiz } = useAsync(
-    () => QuizKnitApi.getQuizWithId(id || ""),
+  const { loading: loadingFlashcardSet, execute: loadFlashcardSet } = useAsync(
+    () => QuizKnitApi.getFlashcardSetWithId(id || ""),
     [],
     {
       onSuccess(result) {
-        setQuizLoaded(true);
-        setQuiz(result);
+        setFlashcardSetLoaded(true);
+        setFlashcardSet(result);
       },
       onError() {
-        alert("Could not view quiz!");
-        setQuizLoaded(false);
+        alert("Could not view flashcards!");
+        setFlashcardSetLoaded(false);
       },
     }
   );
 
   useEffect(() => {
     try {
-      loadQuiz();
+      loadFlashcardSet();
     } catch (e) {
-      alert("Could not load quiz!");
+      alert("Could not load flashcards!");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loadingQuiz) {
+  if (loadingFlashcardSet) {
     return (
       <Flex vertical gap="12px" style={{ marginTop: "12px" }}>
         <Spin indicator={<LoadingOutlined spin />} />
@@ -46,7 +46,7 @@ export function ViewQuiz() {
     );
   }
 
-  if (!quizLoaded) {
+  if (!flashcardSetLoaded) {
     return (
       <Flex
         vertical
@@ -58,9 +58,7 @@ export function ViewQuiz() {
           borderRadius: "8px",
         }}
       >
-        <p>
-          Could not load quiz, please confirm the link to the quiz is correct
-        </p>
+        <p>Could not load flashcards, please confirm the link is correct</p>
       </Flex>
     );
   }
@@ -77,7 +75,7 @@ export function ViewQuiz() {
       }}
     >
       <Flex align="center" justify="space-between">
-        <h3>{quiz?.quizTitle}</h3>
+        <h3>{flashcardSet?.flashcardSetTitle}</h3>
         <Button
           type="default"
           shape="circle"
@@ -85,20 +83,19 @@ export function ViewQuiz() {
           onClick={() => setIsModalOpen(true)}
         />
       </Flex>
-      {quiz &&
-        quiz.questions.length > 0 &&
-        quiz.questions.map((questionItem, index) => (
-          <QuestionAndOptions
-            questionItem={questionItem}
-            index={index}
-            key={index}
-          />
-        ))}
+      {flashcardSet && (
+        <Flex vertical>
+          {flashcardSet.flashcards?.length > 0 &&
+            flashcardSet.flashcards.map((flashcardItem, index) => (
+              <Flashcard flashcardItem={flashcardItem} key={index} />
+            ))}
+        </Flex>
+      )}
       <ShareItemModal
-        itemId={quiz?._id || ""}
+        itemId={flashcardSet?._id || ""}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        savedItemType="quiz"
+        savedItemType="flashcards"
       />
     </Flex>
   );

@@ -1,17 +1,21 @@
 import { Flex, Modal, Typography } from "antd";
 import { isMobile } from "react-device-detect";
 
-interface SavedQuizModalProps {
-  quizId: string;
+interface SavedItemModalProps {
+  itemId: string;
   isModalOpen: boolean;
   setIsModalOpen: (value: React.SetStateAction<boolean>) => void;
+  title: string;
+  savedItemType: string;
 }
 
-export function SavedQuizModal({
-  quizId,
+export function SavedItemModal({
+  itemId,
   isModalOpen,
   setIsModalOpen,
-}: SavedQuizModalProps) {
+  title,
+  savedItemType,
+}: SavedItemModalProps) {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -19,18 +23,18 @@ export function SavedQuizModal({
   return (
     <Modal open={isModalOpen} onCancel={handleCancel} footer={null}>
       <Flex vertical align="center">
-        <h3>Your quiz has been saved!</h3>
-        <p>Share it with the link below.</p>
+        <h3>{title}</h3>
+        <p>You can also share it with the link below.</p>
         <Typography.Paragraph
           copyable
           style={{
-            fontSize: isMobile ? "12px" : "16px",
+            fontSize: isMobile ? "10px" : "14px",
             backgroundColor: "rgb(241, 245, 249)",
             padding: "8px",
             borderRadius: "8px",
           }}
         >
-          {`${import.meta.env.VITE_CLIENT_URL}/quiz/${quizId}`}
+          {`${import.meta.env.VITE_CLIENT_URL}/${savedItemType}/${itemId}`}
         </Typography.Paragraph>
       </Flex>
     </Modal>

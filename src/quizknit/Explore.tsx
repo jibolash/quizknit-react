@@ -3,7 +3,7 @@ import { Flex, Spin } from "antd";
 import { QuizKnitApi } from "./QuizKnitApi";
 import { useEffect, useState } from "react";
 import { useAsync } from "react-async-hook";
-import { Quiz } from "./CreateQuiz";
+import { Quiz } from "./create/CreateQuiz";
 import { QuizCardList } from "./QuizCardList";
 
 export function Explore() {
