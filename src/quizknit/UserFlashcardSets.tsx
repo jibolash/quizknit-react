@@ -1,6 +1,6 @@
 import { LoadingOutlined } from "@ant-design/icons";
-import { Col, Flex, Row, Spin } from "antd";
-import { useParams } from "react-router-dom";
+import { Button, Col, Flex, Row, Spin } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
 import { QuizKnitApi } from "./QuizKnitApi";
 import { useEffect, useState } from "react";
 import { useAsync } from "react-async-hook";
@@ -8,6 +8,8 @@ import { FlashcardSet } from "./create/CreateQuiz";
 import { FlashcardSetCard } from "./FlashcardSetCard";
 
 export function UserFlashcardSets() {
+  const navigate = useNavigate();
+
   const [userFlashcardSets, setUserFlashcardSets] = useState<FlashcardSet[]>(
     []
   );
@@ -42,8 +44,17 @@ export function UserFlashcardSets() {
         marginRight: "20px",
       }}
     >
-      <Flex justify="center">
+      <Flex align="center" justify="space-between">
         <h3>Your Flashcards</h3>
+        <Flex gap={8}>
+          <Button
+            type="primary"
+            size="large"
+            onClick={() => navigate("/create-flashcards")}
+          >
+            Create Flashcards
+          </Button>
+        </Flex>
       </Flex>
       <Row gutter={[12, 12]}>
         {userFlashcardSets.map((flashcardSet: FlashcardSet) => (

@@ -13,7 +13,7 @@ const features = [
     icon: <RobotOutlined style={{ fontSize: "2rem" }} />,
     title: "AI Powered Generation",
     description:
-      "Paste your own text or pick an historical topic you are and generate questions or flashcards in seconds.",
+      "Paste your own text or pick an historical topic and generate questions or flashcards in seconds.",
   },
   {
     icon: <ThunderboltOutlined style={{ fontSize: "2rem" }} />,
@@ -34,13 +34,13 @@ const steps = [
     number: 1,
     title: "Select category of interest or Paste Your Content",
     description:
-      "Select from a Curated List Paste or paste in any text from any article, lesson, or document. No formatting needed.",
+      "Select from a curated list or paste in any text from any article, lesson, or document. No formatting needed.",
   },
   {
     number: 2,
     title: "AI Does the Work",
     description:
-      "QuizKnit instantly creates smart, multiple-choice questions or flashcards based on your input.",
+      "QuizKnit instantly creates multiple-choice questions or flashcards based on your input.",
   },
   {
     number: 3,

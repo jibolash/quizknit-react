@@ -247,17 +247,6 @@ function App() {
                     Login
                   </NavLink>
                 )}
-                {/* {quizKnitUser && (
-                  <NavLink
-                    to={`${quizKnitUser.id}/quizzes`}
-                    className={({ isActive }) =>
-                      isActive ? "activeNavLink" : "inactiveNavLink"
-                    }
-                    style={{ textDecoration: "none" }}
-                  >
-                    Library
-                  </NavLink>
-                )} */}
                 {quizKnitUser && (
                   <Dropdown
                     menu={{ items: libraryItems }}

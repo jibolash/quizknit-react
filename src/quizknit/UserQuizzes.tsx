@@ -1,6 +1,6 @@
 import { LoadingOutlined } from "@ant-design/icons";
-import { Flex, Spin } from "antd";
-import { useParams } from "react-router-dom";
+import { Button, Flex, Spin } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
 import { QuizKnitApi } from "./QuizKnitApi";
 import { useEffect, useState } from "react";
 import { useAsync } from "react-async-hook";
@@ -10,6 +10,7 @@ import { QuizCardList } from "./QuizCardList";
 export function UserQuizzes() {
   const [userQuizzes, setUserQuizzes] = useState<Quiz[]>([]);
   const { userId } = useParams();
+  const navigate = useNavigate();
 
   const { loading: loadingUserQuizzes, execute: fetchUserQuizzes } = useAsync(
     () => QuizKnitApi.getUserQuizzes(userId || ""),
@@ -43,8 +44,17 @@ export function UserQuizzes() {
         marginRight: "20px",
       }}
     >
-      <Flex justify="center">
+      <Flex align="center" justify="space-between">
         <h3>Your Quizzes</h3>
+        <Flex gap={8}>
+          <Button
+            type="primary"
+            size="large"
+            onClick={() => navigate("/create-quiz")}
+          >
+            Create Quiz
+          </Button>
+        </Flex>
       </Flex>
       <QuizCardList quizArr={userQuizzes} />
     </Flex>

@@ -187,7 +187,7 @@ export function CreateQuiz(props: CreateQuizProps) {
         <Flex vertical gap="12px">
           {flashcardSet == undefined && (
             <Card
-              title={"Your AI generated flashcards will appear here."}
+              title={"Your AI generated flashcards will appear here"}
             ></Card>
           )}
           {flashcardSet && (

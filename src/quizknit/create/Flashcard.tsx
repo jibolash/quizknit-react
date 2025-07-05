@@ -36,7 +36,6 @@ export function Flashcard({ flashcardItem }: FlashcardProps) {
       >
         <div
           style={{
-            position: "absolute",
             backfaceVisibility: "hidden",
           }}
         >
@@ -63,7 +62,6 @@ export function Flashcard({ flashcardItem }: FlashcardProps) {
             transform: "rotateX(180deg)",
           }}
         >
-          {/* {flashCardItem.answer} */}
           <Flex vertical align="center">
             <Typography.Text style={{ textAlign: "center" }}>
               {flashcardItem.answer}
