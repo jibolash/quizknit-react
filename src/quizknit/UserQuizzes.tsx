@@ -1,4 +1,4 @@
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Flex, Spin } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { QuizKnitApi } from "./QuizKnitApi";
@@ -52,6 +52,7 @@ export function UserQuizzes() {
             size="large"
             onClick={() => navigate("/create-quiz")}
           >
+            <PlusOutlined />
             Create Quiz
           </Button>
         </Flex>

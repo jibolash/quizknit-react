@@ -61,7 +61,7 @@ export function Content({
                   placeholder={`Type or paste text you want to generate ${
                     isQuiz() ? "a quiz" : "flashcards"
                   } from here`}
-                  autoSize={{ maxRows: 20, minRows: 20 }}
+                  autoSize={{ maxRows: 18, minRows: 18 }}
                   disabled={generating}
                   id="inputTextArea"
                 />
@@ -109,6 +109,7 @@ export function Content({
             defaultValue="5"
             style={{ width: "150px" }}
             onChange={(value) => setNumOfQuestions(value)}
+            size="large"
             options={[
               {
                 value: "5",
@@ -116,15 +117,15 @@ export function Content({
               },
               {
                 value: "10",
-                label: `5 ${isQuiz() ? "questions" : "flashcards"}`,
+                label: `10 ${isQuiz() ? "questions" : "flashcards"}`,
               },
               {
                 value: "15",
-                label: `5 ${isQuiz() ? "questions" : "flashcards"}`,
+                label: `15 ${isQuiz() ? "questions" : "flashcards"}`,
               },
               {
                 value: "20",
-                label: `5 ${isQuiz() ? "questions" : "flashcards"}`,
+                label: `20 ${isQuiz() ? "questions" : "flashcards"}`,
               },
             ]}
           />
@@ -135,6 +136,7 @@ export function Content({
             defaultValue="easy"
             style={{ width: "150px" }}
             onChange={(value) => setDifficultlyLevel(value)}
+            size="large"
             options={[
               { value: "easy", label: "Easy" },
               { value: "difficult", label: "Difficult" },

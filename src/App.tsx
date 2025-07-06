@@ -336,17 +336,7 @@ function App() {
         >
           <Flex gap={8} align="center" justify="center">
             <span className="logo-footer">Q</span>
-            <span style={{ fontWeight: 500 }}>
-              Quiz Knit by{" "}
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: "none", color: "black" }}
-                href={"https://www.linkedin.com/in/mayowa-sogbein/"}
-              >
-                Mayowa Sogbein
-              </a>
-            </span>
+            <span style={{ fontWeight: 500 }}>Quiz Knit</span>
           </Flex>
         </Flex>
       </Flex>

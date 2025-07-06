@@ -5,6 +5,9 @@ import {
 } from "@ant-design/icons";
 import { Row, Col, Typography, Button, Space, Card, Flex, Tag } from "antd";
 import { Link, useNavigate } from "react-router-dom";
+import { authClient } from "./lib/auth-client";
+import { QuizKnitUser } from "./App";
+import { useEffect } from "react";
 
 const { Title, Paragraph } = Typography;
 
@@ -51,6 +54,16 @@ const steps = [
 
 export default function Landing() {
   const navigate = useNavigate();
+
+  const { data: session } = authClient.useSession();
+  const quizKnitUser = session?.user as QuizKnitUser;
+
+  console.log("quizkituser", quizKnitUser);
+  useEffect(() => {
+    if (quizKnitUser) {
+      navigate("/create");
+    }
+  });
 
   return (
     <Flex vertical>

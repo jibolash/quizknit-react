@@ -51,7 +51,7 @@ export const CategoriesList = ({
       defaultActiveKey={["medieval"]}
       items={categories.map((c, index) => createItem(c, index))}
       style={{
-        maxHeight: "455px",
+        maxHeight: "410px",
         overflowY: "auto",
         scrollbarColor: "#1d1e1f #FAFAFA",
       }}

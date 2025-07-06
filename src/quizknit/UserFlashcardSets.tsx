@@ -1,4 +1,4 @@
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Col, Flex, Row, Spin } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { QuizKnitApi } from "./QuizKnitApi";
@@ -52,6 +52,7 @@ export function UserFlashcardSets() {
             size="large"
             onClick={() => navigate("/create-flashcards")}
           >
+            <PlusOutlined />
             Create Flashcards
           </Button>
         </Flex>

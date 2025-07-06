@@ -4,6 +4,7 @@ import {
   PlayCircleOutlined,
   ShareAltOutlined,
   FileOutlined,
+  CaretRightOutlined,
 } from "@ant-design/icons";
 import { Flex, Card, Dropdown, Button, MenuProps } from "antd";
 import { Quiz } from "./create/CreateQuiz";
@@ -64,9 +65,10 @@ export function QuizCard({ quiz }: QuizCardProps) {
             <Button
               style={{ width: "100%" }}
               size="middle"
+              type="primary"
               onClick={() => navigate(`/quiz/${quiz._id}`)}
             >
-              <PlayCircleOutlined />
+              <CaretRightOutlined />
               Take Quiz
             </Button>
           </Flex>

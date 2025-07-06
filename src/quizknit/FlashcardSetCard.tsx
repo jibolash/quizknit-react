@@ -1,9 +1,9 @@
 import {
   MoreOutlined,
   CalendarOutlined,
-  PlayCircleOutlined,
   ShareAltOutlined,
   FileOutlined,
+  CaretRightOutlined,
 } from "@ant-design/icons";
 import { Flex, Card, Dropdown, Button, MenuProps } from "antd";
 import { FlashcardSet } from "./create/CreateQuiz";
@@ -68,9 +68,10 @@ export function FlashcardSetCard({ flashcardSet }: FlashcardSetCardProps) {
             <Button
               style={{ width: "100%" }}
               size="middle"
+              type="primary"
               onClick={() => navigate(`/flashcards/${flashcardSet._id}`)}
             >
-              <PlayCircleOutlined />
+              <CaretRightOutlined />
               Study Cards
             </Button>
           </Flex>
